@@ -9,11 +9,11 @@
 // node slot_subscribe.mjs
 
 import * as web3 from '@solana/web3.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
 // Set up web3 client
-const rpc_endpoint = 'https://api.mainnet-beta.solana.com';
-const commitmentLevel = 'confirmed';
-const connection = new web3.Connection(rpc_endpoint, commitmentLevel);
+const connection = new web3.Connection(process.env.RPC_URL, 'confirmed');
 
 try {
   let start_time = new Date();
@@ -21,7 +21,11 @@ try {
   connection.onSlotChange(
     function(slotInfo) {
       elapsed_time = new Date() - start_time;
-      console.log(new Date().toISOString(), slotInfo, `${elapsed_time / 1000.0} sec.`);
+      console.log(
+        new Date().toISOString(), 
+        slotInfo, 
+        `${elapsed_time / 1000.0} sec.`
+      );
       start_time = new Date();
     }
   );  

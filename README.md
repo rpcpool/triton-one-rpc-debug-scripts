@@ -2,4 +2,6 @@
 A collection of scripts that can be used to debug Solana RPC connectivity issues.
 
 ## Install Notes
-Try `yarn install`. If that doesn't work, use: `yarn add @solana/web3.js`
+Try `yarn install`. If that doesn't work, use: `yarn add @solana/web3.js` & `yarn add dotenv`.
+
+We use 'dotenv' to hold sensitive data. Copy `.env.sample` to `.env` and provide your RPC URL in the `.env` file.
