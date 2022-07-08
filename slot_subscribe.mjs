@@ -3,7 +3,7 @@
 // elapsed time since the last slot. On error, the script will exit and dump 
 // error details to the console.
 //
-// Change `rpc_endpoint` below to check your connection.
+// Provide RPC_URL in your .env file to check your connection.
 //
 // Example Use:
 // node slot_subscribe.mjs
