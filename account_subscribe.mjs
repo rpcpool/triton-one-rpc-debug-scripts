@@ -26,7 +26,7 @@ try {
   connection.onAccountChange(pub_key,
     function(accountInfo) {
       elapsed_time = new Date() - start_time;
-      console.log(`${elapsed_time / 1000.0} sec.`, accountInfo);
+      console.log(new Date().toISOString(), accountInfo, `${elapsed_time / 1000.0} sec.`);
       start_time = new Date();
     }
   );  

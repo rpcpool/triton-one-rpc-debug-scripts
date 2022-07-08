@@ -21,7 +21,7 @@ try {
   connection.onSlotChange(
     function(slotInfo) {
       elapsed_time = new Date() - start_time;
-      console.log(`${elapsed_time / 1000.0} sec.`, slotInfo);
+      console.log(new Date().toISOString(), slotInfo, `${elapsed_time / 1000.0} sec.`);
       start_time = new Date();
     }
   );  
