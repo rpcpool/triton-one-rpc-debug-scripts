@@ -3774,6 +3774,8 @@ dependencies = [
  "chrono",
  "dotenv",
  "futures",
+ "serde",
+ "serde_json",
  "solana-account-decoder",
  "solana-client",
  "solana-sdk",
