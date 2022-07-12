@@ -6,6 +6,10 @@
 cargo build --release
 ```
 
+## ENV
+
+Check `.env.sample` for setting ENV variable. `RPC_URL` should point on WebSocket ednpoint, usually it's: `ws://127.0.0.1:8900`.
+
 ### Usage
 
 ```
