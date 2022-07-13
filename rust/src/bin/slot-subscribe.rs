@@ -12,19 +12,31 @@ async fn main() -> anyhow::Result<()> {
     let rpc_url = var("RPC_URL")?;
 
     let pubsub = PubsubClient::new(rpc_url.as_str()).await?;
-    let (mut stream, _unsubscribe) = pubsub.slot_subscribe().await?;
-
-    let mut ts = Instant::now();
-    while let Some(value) = stream.next().await {
-        println!(
-            "{} {} {:.3} sec.",
-            Utc::now().to_rfc3339_opts(SecondsFormat::Millis, true),
-            serde_json::to_string(&value).unwrap(),
-            ts.elapsed().as_millis() as f64 / 1000f64
-        );
-        ts = Instant::now();
+    {
+        let (mut stream, _unsubscribe) = pubsub.slot_subscribe2().await?;
+        let mut ts = Instant::now();
+        loop {
+            match stream.next().await {
+                Some(Ok(value)) => {
+                    println!(
+                        "{} {} {:.3} sec.",
+                        Utc::now().to_rfc3339_opts(SecondsFormat::Millis, true),
+                        serde_json::to_string(&value).unwrap(),
+                        ts.elapsed().as_millis() as f64 / 1000f64
+                    );
+                    ts = Instant::now();
+                }
+                Some(Err(error)) => {
+                    eprintln!("stream error: {:?}", error)
+                }
+                None => break,
+            }
+        }
     }
-    eprintln!("pubsub closed");
+    eprintln!(
+        "stream finished, shutdown status: {:?}",
+        pubsub.shutdown().await
+    );
 
     Ok(())
 }

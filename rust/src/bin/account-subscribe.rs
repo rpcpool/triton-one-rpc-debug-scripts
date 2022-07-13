@@ -27,39 +27,51 @@ async fn main() -> anyhow::Result<()> {
     let rpc_url = var("RPC_URL")?;
 
     let pubsub = PubsubClient::new(rpc_url.as_str()).await?;
-    let (mut stream, _unsubscribe) = pubsub
-        .account_subscribe(
-            &Pubkey::from_str(ACCOUNT)?,
-            Some(RpcAccountInfoConfig {
-                encoding: Some(UiAccountEncoding::Base64),
-                commitment: Some(CommitmentConfig::confirmed()),
-                ..Default::default()
-            }),
-        )
-        .await?;
+    {
+        let (mut stream, _unsubscribe) = pubsub
+            .account_subscribe2(
+                &Pubkey::from_str(ACCOUNT)?,
+                Some(RpcAccountInfoConfig {
+                    encoding: Some(UiAccountEncoding::Base64),
+                    commitment: Some(CommitmentConfig::confirmed()),
+                    ..Default::default()
+                }),
+            )
+            .await?;
+        let mut ts = Instant::now();
+        loop {
+            match stream.next().await {
+                Some(Ok(value)) => {
+                    let account = Account {
+                        lamports: value.value.lamports,
+                        data: match value.value.data {
+                            UiAccountData::Binary(value, UiAccountEncoding::Base64) => value,
+                            _ => unreachable!("data should be base64"),
+                        },
+                        owner: value.value.owner,
+                        executable: value.value.executable,
+                        rent_epoch: value.value.rent_epoch,
+                    };
 
-    let mut ts = Instant::now();
-    while let Some(value) = stream.next().await {
-        let account = Account {
-            lamports: value.value.lamports,
-            data: match value.value.data {
-                UiAccountData::Binary(value, UiAccountEncoding::Base64) => value,
-                _ => unreachable!("data should be base64"),
-            },
-            owner: value.value.owner,
-            executable: value.value.executable,
-            rent_epoch: value.value.rent_epoch,
-        };
-
-        println!(
-            "{} {} {:.3} sec.\n",
-            Utc::now().to_rfc3339_opts(SecondsFormat::Millis, true),
-            serde_json::to_string(&account).unwrap(),
-            ts.elapsed().as_millis() as f64 / 1000f64
-        );
-        ts = Instant::now();
+                    println!(
+                        "{} {} {:.3} sec.\n",
+                        Utc::now().to_rfc3339_opts(SecondsFormat::Millis, true),
+                        serde_json::to_string(&account).unwrap(),
+                        ts.elapsed().as_millis() as f64 / 1000f64
+                    );
+                    ts = Instant::now();
+                }
+                Some(Err(error)) => {
+                    eprintln!("stream error: {:?}", error)
+                }
+                None => break,
+            }
+        }
     }
-    eprintln!("pubsub closed");
+    eprintln!(
+        "stream finished, shutdown status: {:?}",
+        pubsub.shutdown().await
+    );
 
     Ok(())
 }
