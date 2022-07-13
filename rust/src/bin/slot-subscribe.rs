@@ -17,7 +17,7 @@ async fn main() -> anyhow::Result<()> {
     let mut ts = Instant::now();
     while let Some(value) = stream.next().await {
         println!(
-            "{} {} {:.3} sec.\n",
+            "{} {} {:.3} sec.",
             Utc::now().to_rfc3339_opts(SecondsFormat::Millis, true),
             serde_json::to_string(&value).unwrap(),
             ts.elapsed().as_millis() as f64 / 1000f64
