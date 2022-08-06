@@ -8,7 +8,7 @@ cargo build --release
 
 ## ENV
 
-Check `.env.sample` for setting ENV variable.
+Copy `.env.sample` to `.env` for setting ENV variables.
 - `RPC_URL` should point on HTTP endpoint, usually it's: `http://127.0.0.1:8899`. Required for `quic-staked-validators`.
 - `WS_URL` should point on WebSocket ednpoint, usually it's: `ws://127.0.0.1:8900`. Required for `accounts-subscribe` and `slog-subscribe`.
 
