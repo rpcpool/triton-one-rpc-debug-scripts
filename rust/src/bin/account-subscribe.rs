@@ -24,9 +24,9 @@ struct Account {
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
     dotenv()?;
-    let rpc_url = var("RPC_URL")?;
+    let ws_url = var("WS_URL")?;
 
-    let pubsub = PubsubClient::new(rpc_url.as_str()).await?;
+    let pubsub = PubsubClient::new(ws_url.as_str()).await?;
     {
         let (mut stream, _unsubscribe) = pubsub
             .account_subscribe2(
