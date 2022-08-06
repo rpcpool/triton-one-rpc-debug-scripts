@@ -32,18 +32,17 @@ Check `.env.sample` for setting ENV variable.
 
 ```
 ./target/release/quic-staked-validators
-TODO./target/debug/quic-staked-validators 
-IP Address      | Identity                                     | Gossip | TPU   | RPC Address           | Version | Feature Set    | QUIC
-----------------+----------------------------------------------+--------+-------+-----------------------+---------+----------------+-----
-141.95.2.240    | Fsdv1iumCDDd3Hbs8ZGG9UhbVBfHbhkohmC4y8N81mpg | 9300   | 9303  | none                  | 1.10.34 | 483097211      | ok
+IP Address      | Identity                                     | Version | Active Stake         | QUIC OK?
+----------------+----------------------------------------------+---------+----------------------+---------
+18.188.5.164    | XkCriyrNwS3G4rzAXtG5B1nnvb5Ka1JtCku93VqeKAr  | 1.10.32 |     8617029373399950 | ok
 ...
-141.98.219.196  | PYJstkhQNfWBCnQtN7MYMH2nvmL37rxLwVyqjX5ohGn  | 8000   | 8003  | none                  | 1.10.34 | 483097211      | ok
-Nodes: 1806
+52.31.190.93    | A3nXCY954bSWMo9kB9FQWoeenNq3ZBnzUwFLWHfduCSs | 1.10.32 |            266769518 | ok
+Nodes: 1799
 
-IP Address      | Identity                                     | Gossip | TPU   | RPC Address           | Version | Feature Set    | QUIC
-----------------+----------------------------------------------+--------+-------+-----------------------+---------+----------------+-----
-213.133.99.147  | 7oerTAUkraPoi4ucomtHcaLqaifChWj7SaBS42f1bbmf | 8000   | 8003  | none                  | 1.10.25 | 965221688      | ConnectionError(ConnectionClosed(ConnectionClose { error_code: Code::crypto(78), frame_type: None, reason: b"peer doesn't support any known protocol" }))
+IP Address      | Identity                                     | Version | Active Stake         | QUIC OK?
+----------------+----------------------------------------------+---------+----------------------+---------
+35.164.26.16    | krakeNd6ednDPEXxHAmoBs1qKVM8kLg79PvWF2mhXV1  | 1.10.31 |     5689282263096734 | timed out
 ...
-45.77.29.210    | 9AvtEMGgemx4XPgz6LyxB87a9bfkAmYyFgy5YsLJpuz8 | 8001   | 8004  | 45.77.29.210:8899     | 1.10.31 | 4192065167     | ConnectionError(TimedOut)
-Nodes: 106
+94.130.64.51    | 8j5kjKAufwdJH7GitGY18Qp12EhEQkVMc4PWZzGeH8Gw | 1.10.25 |       82475460478848 | aborted by peer: the cryptographic handshake failed: error 120: peer doesn't support any known protocol
+Nodes: 107
 ```

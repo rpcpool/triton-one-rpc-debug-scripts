@@ -12,14 +12,12 @@ futures = "0.3"
 serde = "1"
 serde_json = "1"
 solana-account-decoder = "1.11.5"
-solana-cli-output = "1.11.5"
 solana-client = "1.11.5"
 solana-sdk = "1.11.5"
 tokio = { version = "1.14", features = ["rt-multi-thread", "time", "macros"] }
 
 [patch.crates-io]
 solana-account-decoder = { version = "1.11.5", git = "https://github.com/fanatid/solana.git", tag = "v1.11.5-client-show-errors" }
-solana-cli-output = { version = "1.11.5", git = "https://github.com/fanatid/solana.git", tag = "v1.11.5-client-show-errors" }
 solana-client = { version = "1.11.5", git = "https://github.com/fanatid/solana.git", tag = "v1.11.5-client-show-errors" }
 solana-sdk = { version = "1.11.5", git = "https://github.com/fanatid/solana.git", tag = "v1.11.5-client-show-errors" }
 
