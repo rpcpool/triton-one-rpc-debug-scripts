@@ -1,6 +1,7 @@
 require 'solana_rpc_ruby'
 require 'pry'
 require 'dotenv'
+require 'time'
 
 Dotenv.load
 rpc_url = ENV['RPC_URL']
@@ -27,7 +28,7 @@ begin
     json = JSON.parse(message)
     # puts json['params']
     time_elapsed = Time.now - time_last
-    puts "#{time_elapsed.round(4)} seconds. #{json['params']}"
+    puts "#{Time.now.utc.iso8601(3)} #{json['params']} #{time_elapsed.round(4)} sec."
     time_last = Time.now
     break if interrupted
   end
