@@ -4,7 +4,7 @@ require 'dotenv'
 require 'time'
 
 Dotenv.load
-rpc_url = ENV['RPC_URL']
+rpc_url = ENV['RPC_WS_URL']
 
 cluster = rpc_url
 raise "Please provide a cluster endpoint in this format: ws://api.mainnet-beta.solana.com" if cluster.nil?
