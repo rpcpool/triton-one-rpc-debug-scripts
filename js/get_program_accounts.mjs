@@ -16,10 +16,18 @@ dotenv.config();
 const connection = new web3.Connection(process.env.RPC_URL, 'confirmed');
 
 // Setup getProgramAccounts call
-const program_id = '9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'; // Serum V3
-const gpa_owner_id = 'FnJZCfHc6LuZKCWMJGsHmpmqPeVVpxiJR3upiFp8TWsG'; // Filter
-const data_size = 3228;
-const offset = 45;
+//
+// Serum
+// const program_id = '9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'; // Program
+// const gpa_owner_id = 'FnJZCfHc6LuZKCWMJGsHmpmqPeVVpxiJR3upiFp8TWsG'; // Filter
+// const data_size = 3228;
+// const offset = 45;
+//
+// Tokenkeg
+const program_id = 'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA'; // Program
+const gpa_owner_id = 'CwyQtt6xGptR7PaxrrksgqBSRCZ3Zb2GjUYjKD9jH3tf'; // Filter
+const data_size = 165;
+const offset = 32;
 
 console.log('Checking:',process.env.RPC_URL,"\n");
 
@@ -38,6 +46,8 @@ try {
   );
 
   let elapsed_time = new Date() - start_time;
+  console.log(accounts.length, 'accounts in', elapsed_time, "milliseconds\n");
+  console.log(JSON.stringify(accounts));
   console.log(accounts.length, 'accounts in', elapsed_time, "milliseconds\n");
 } catch (e) {
   console.log('\n', e, '\n');
