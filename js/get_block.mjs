@@ -26,7 +26,7 @@ const block = await connection.getBlock(
   slot, 
   { 
     commitment: 'finalized', 
-    maxSupportedTransactionVersion: 0 
+    maxSupportedTransactionVersion: 1 
   }
 );
 console.log(block.transactions.length);
