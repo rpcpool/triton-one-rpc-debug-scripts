@@ -18,7 +18,6 @@ endpoints = {
   Steamboat: ENV['RPC_URL_COMPARE']
 }
 
-# results = {}
 pubkeys = {}
 
 endpoints.each do |k, v|
