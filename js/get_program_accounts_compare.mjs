@@ -96,8 +96,8 @@ function diffArray(arr1, arr2) {
 
 getPubkeys()
   .then((pubkeys) => {
-    console.log(`Pubkeys in RPC but not Steamboat: ${diffArray(pubkeys['RPC'], pubkeys['Steamboat'])}\n`);
-    console.log(`Pubkeys in Steamboat but not RPC: ${diffArray(pubkeys['Steamboat'], pubkeys['RPC'])}\n`);    
+    console.log(`Pubkeys in RPC but not Steamboat:\n ${diffArray(pubkeys['RPC'], pubkeys['Steamboat'])}\n`);
+    console.log(`Pubkeys in Steamboat but not RPC:\n ${diffArray(pubkeys['Steamboat'], pubkeys['RPC'])}\n`);    
   })
   .catch(error => {
     console.error('Error:', error);
