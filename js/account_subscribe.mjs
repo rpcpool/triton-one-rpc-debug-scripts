@@ -15,7 +15,7 @@ dotenv.config();
 // Set up web3 client
 const connection = new web3.Connection(process.env.RPC_URL, 'confirmed');
 
-// OpenBook | SOL-USDC
+// OpenBook | SOL-USDC event queue
 const account = '8CvwxZ9Db6XbLD46NZwwmVDZZRDy7eydFcAGkXKh9axa';
 
 try {
