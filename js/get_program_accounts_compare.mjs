@@ -11,16 +11,48 @@ import * as web3 from '@solana/web3.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
-// Setup getProgramAccounts call & gpa_filters.
+// Setup getProgramAccounts call & gpa_filters. Uncomment the examples below to
+// use them.
 //
 // Marinade
 const program_id = 'Stake11111111111111111111111111111111111111';
 const bytes = '4bZ6o3eUUNXhKuqjdCnCoPAoLgWiuLYixKaxoa8PpiKk';
 const offset = 12;
 const gpa_filters = [
-  // { dataSize: data_size },
   { memcmp: { offset: offset, bytes: bytes } }
 ];
+
+// OpenBook Example One:
+// const program_id = 'srmqPvymJeFKQ4zGQed1GFppgkRHL9kaELCbyksJtPX';
+// const gpa_filters = [
+//   { memcmp: {
+//       offset:13, 
+//       bytes: '9tJB1d9LMt6rbZyYxivKGzKKFogfsxyroJpkYLsSN13Z'
+//     }
+//   },
+//   { memcmp: {
+//       offset:45, 
+//       bytes: 'CkvRjxTtotXBuYjBXVkcyDfd3qoEgeLnQecxFfPg1ZcN'
+//     }
+//   },
+//   { dataSize: 3228 }
+// ];
+//
+// OpenBook Example Two:
+// const program_id = 'srmqPvymJeFKQ4zGQed1GFppgkRHL9kaELCbyksJtPX';
+// const gpa_filters = [
+//   { memcmp: {
+//      offset: 13,
+//      bytes: '8BnEgHoWFysVcuFFX7QztDmzuH8r5ZFvyP3sYwn1XTh6'
+//     }
+//   },
+//   { memcmp: {
+//       offset: 45,
+//       bytes: 'F9NY3NZAgtWNqLNSFA8Lse6JBYZHkBEXbJ1ssUbUEYWR'
+//     }
+//   }, 
+//   { dataSize: 3228 }
+// ];
 
 const endpoints = {
   'RPC': process.env.RPC_URL,
@@ -89,18 +121,3 @@ getPubkeys()
   .catch(error => {
     console.error('Error:', error);
   });
-
-// Appendix
-// 
-// OpenBook
-// const program_id = 'srmqPvymJeFKQ4zGQed1GFppgkRHL9kaELCbyksJtPX'; // Program
-// const bytes = '5jWUncPNBMZJ3sTHKmMLszypVkoRK6bfEQMQUHweeQnh'; // Filter
-// const data_size = 3228;
-// const offset = 45;
-// # bytes_list = ["DxFJrKS2demp8TmN2c4Gp4MCQgFBvtK8SvdeeWKyCScE", "2tTPiyXKifAtwLasZwkpdSKmJQvG6LuQ7k8cV3TC5HxM", "3KiMpRp7kH1WBkVCTQ1SMpeFp9HSvfzX7V5k5JkSpqMg",'9ycmYnQmDRhrUTWLspW1Q4Yn8EDtYn3wCUc9Q72YVrmb','8BySRezwLPxgo5r4zCnfmaxTt16ufCPD7FP475k6K4TT','Cyfs4gas18c3gxHF3Hs2vo7HBKWyi6kjeXXpS93qWKSK','B9FpdsWUqrhPmBNiDGDYRUPV77dFocf32jMJa4G2PwwL','4fEuQEAeySDjDLrzVTr2Mp8GTaJZj4z8f2Zt6r4PSQof']
-// Tokenkeg
-// const program_id = 'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA'; // Program
-// const bytes = 'CwyQtt6xGptR7PaxrrksgqBSRCZ3Zb2GjUYjKD9jH3tf'; // Filter
-// const offset = 32;
-// const data_size = 165;
-//
