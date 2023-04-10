@@ -1,4 +1,4 @@
-// This script will open a subscription for Serum SOL-USDC updates and remain
+// This script will open a subscription for OpenBook SOL-USDC events and remain
 // open. Output to the console will show the detail for each new update along
 // with the elapsed time since the last slot. On error, the script will exit and 
 // dump error details to the console.
@@ -15,8 +15,8 @@ dotenv.config();
 // Set up web3 client
 const connection = new web3.Connection(process.env.RPC_URL, 'confirmed');
 
-// Serum | SOL-USDC
-const account = '9wFFyRfZBsuAha4YcuxcXLKwMxJR43S7fPfQLusDBzvT';
+// OpenBook | SOL-USDC
+const account = '8CvwxZ9Db6XbLD46NZwwmVDZZRDy7eydFcAGkXKh9axa';
 
 try {
   let start_time = new Date();
