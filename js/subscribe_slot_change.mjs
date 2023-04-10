@@ -6,7 +6,7 @@
 // Provide RPC_URL in your .env file to check your connection.
 //
 // Example Use:
-// node slot_subscribe.mjs
+// node subscribe_slot_change.mjs
 
 import * as web3 from '@solana/web3.js';
 import dotenv from 'dotenv';
