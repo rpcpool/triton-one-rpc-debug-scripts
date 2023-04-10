@@ -24,7 +24,7 @@ const gpa_filters = [
 
 const endpoints = {
   'RPC': process.env.RPC_URL,
-  'Steamboat': process.env.RPC_URL_COMPARE
+  'Comparison': process.env.RPC_URL_COMPARE
 }
 
 // Get pubkeys from getProgramAccounts for each endpoint.
@@ -83,8 +83,8 @@ function diffArray(arr1, arr2) {
 
 getPubkeys()
   .then((pubkeys) => {
-    console.log(`Pubkeys in RPC but not Steamboat:\n ${diffArray(pubkeys['RPC'], pubkeys['Steamboat'])}\n`);
-    console.log(`Pubkeys in Steamboat but not RPC:\n ${diffArray(pubkeys['Steamboat'], pubkeys['RPC'])}\n`);    
+    console.log(`Pubkeys in RPC but not Comparison:\n ${diffArray(pubkeys['RPC'], pubkeys['Comparison'])}\n`);
+    console.log(`Pubkeys in Comparison but not RPC:\n ${diffArray(pubkeys['Comparison'], pubkeys['RPC'])}\n`);    
   })
   .catch(error => {
     console.error('Error:', error);
