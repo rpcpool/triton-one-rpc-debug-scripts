@@ -15,9 +15,17 @@ dotenv.config();
 // use them.
 //
 // Marinade
+// const program_id = 'Stake11111111111111111111111111111111111111';
+// const bytes = '4bZ6o3eUUNXhKuqjdCnCoPAoLgWiuLYixKaxoa8PpiKk';
+// const offset = 12;
+// const gpa_filters = [
+//   { memcmp: { offset: offset, bytes: bytes } }
+// ];
+//
+// Stake Program for a Wallet
 const program_id = 'Stake11111111111111111111111111111111111111';
-const bytes = '4bZ6o3eUUNXhKuqjdCnCoPAoLgWiuLYixKaxoa8PpiKk';
-const offset = 12;
+const bytes = 'ADDRESS-HERE';
+const offset = 44;
 const gpa_filters = [
   { memcmp: { offset: offset, bytes: bytes } }
 ];
