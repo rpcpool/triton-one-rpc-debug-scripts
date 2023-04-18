@@ -13,6 +13,7 @@ const account = 'DukyuqzWpy1BQdG5pLarZzbW2Bxf4wQDNKayPenVBoXd';
 
 // Set up web3 client
 const connection = new web3.Connection(process.env.RPC_URL, 'confirmed');
+console.log('');
 console.log('Checking:',process.env.RPC_URL);
 console.log(`Getting token balance for ${account}\n`);
 try {
@@ -21,3 +22,4 @@ try {
 } catch (e) {
   console.log('\n', e, '\n');
 }
+console.log('');
