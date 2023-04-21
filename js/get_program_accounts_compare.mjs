@@ -23,12 +23,12 @@ dotenv.config();
 // ];
 //
 // Stake Program for a Wallet
-const program_id = 'Stake11111111111111111111111111111111111111';
-const bytes = 'ADDRESS-HERE';
-const offset = 44;
-const gpa_filters = [
-  { memcmp: { offset: offset, bytes: bytes } }
-];
+// const program_id = 'Stake11111111111111111111111111111111111111';
+// const bytes = 'ADDRESS-HERE';
+// const offset = 44;
+// const gpa_filters = [
+//   { memcmp: { offset: offset, bytes: bytes } }
+// ];
 
 // OpenBook Example One:
 // const program_id = 'srmqPvymJeFKQ4zGQed1GFppgkRHL9kaELCbyksJtPX';
@@ -61,6 +61,26 @@ const gpa_filters = [
 //   }, 
 //   { dataSize: 3228 }
 // ];
+//
+// Realms Governance:
+const program_id = 'GovER5Lthms3bLBqWub97yVrMmEogzX7xNjdXpPPCVZw';
+const gpa_filters = [
+  { memcmp: {
+     offset: 0,
+     bytes: 'M'
+    }
+  },
+  { memcmp: {
+      offset: 1,
+      bytes: 'BqLWTZv8xfJiCtu9gm87T1EqtAnL2cCJ1PS9JoKn3oBy'
+    }
+  },
+//   { memcmp: {
+//     offset: 33,
+//     bytes: 'MangoCzJ36AjZyKwVj3VnYU4GTonjfVEnJmvvWaxLac'
+//   }
+// }
+];
 
 const endpoints = {
   'RPC': process.env.RPC_URL,
