@@ -46,3 +46,14 @@ IP Address      | Identity                                     | Version | Activ
 94.130.64.51    | 8j5kjKAufwdJH7GitGY18Qp12EhEQkVMc4PWZzGeH8Gw | 1.10.25 |       82475460478848 | aborted by peer: the cryptographic handshake failed: error 120: peer doesn't support any known protocol
 Nodes: 107
 ```
+
+```
+./target/release/ws-perf  --perf slot --commitment finalized
+#214395571	grpc +0000.055ms	pubsub +0000.000ms
+#214395572	grpc +0000.000ms	pubsub +0000.010ms
+#214395572	grpc +0000.000ms	pubsub +0347.562ms
+#214395573	grpc +0013.333ms	pubsub +0000.000ms
+#214395573	grpc +0000.000ms	pubsub +0383.237ms
+#214395574	grpc +0018.060ms	pubsub +0000.000ms
+#214395574	grpc +0000.000ms	pubsub +0313.126ms
+```
