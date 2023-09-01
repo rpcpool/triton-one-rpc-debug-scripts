@@ -57,3 +57,11 @@ Nodes: 107
 #214395574	grpc +0018.060ms	pubsub +0000.000ms
 #214395574	grpc +0000.000ms	pubsub +0313.126ms
 ```
+
+```
+./target/release/ws-whirligig-connections --grpc http://127.0.0.1:10000  --whirligig ws://127.0.0.1:8873 --commitment confirmed --address addr1 --address addr2 --count 10
+slot #214831901 +0002.932ms
+slot #214831902 +0016.872ms
+slot #214831904 +0005.303ms
+slot #214831907 +0011.124ms
+```
