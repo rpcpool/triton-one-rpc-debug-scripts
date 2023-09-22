@@ -15,12 +15,12 @@ dotenv.config();
 // use them.
 //
 // Marinade
-// const program_id = 'Stake11111111111111111111111111111111111111';
-// const bytes = '4bZ6o3eUUNXhKuqjdCnCoPAoLgWiuLYixKaxoa8PpiKk';
-// const offset = 12;
-// const gpa_filters = [
-//   { memcmp: { offset: offset, bytes: bytes } }
-// ];
+const program_id = 'Stake11111111111111111111111111111111111111';
+const bytes = '4bZ6o3eUUNXhKuqjdCnCoPAoLgWiuLYixKaxoa8PpiKk';
+const offset = 12;
+const gpa_filters = [
+  { memcmp: { offset: offset, bytes: bytes } }
+];
 //
 // Stake Program for a Wallet
 // const program_id = 'Stake11111111111111111111111111111111111111';
@@ -63,24 +63,24 @@ dotenv.config();
 // ];
 //
 // Realms Governance:
-const program_id = 'GovER5Lthms3bLBqWub97yVrMmEogzX7xNjdXpPPCVZw';
-const gpa_filters = [
-  { memcmp: {
-     offset: 0,
-     bytes: 'M'
-    }
-  },
-  { memcmp: {
-      offset: 1,
-      bytes: 'BqLWTZv8xfJiCtu9gm87T1EqtAnL2cCJ1PS9JoKn3oBy'
-    }
-  },
+// const program_id = 'GovER5Lthms3bLBqWub97yVrMmEogzX7xNjdXpPPCVZw';
+// const gpa_filters = [
+//   { memcmp: {
+//      offset: 0,
+//      bytes: 'M'
+//     }
+//   },
+//   { memcmp: {
+//       offset: 1,
+//       bytes: 'BqLWTZv8xfJiCtu9gm87T1EqtAnL2cCJ1PS9JoKn3oBy'
+//     }
+//   },
 //   { memcmp: {
 //     offset: 33,
 //     bytes: 'MangoCzJ36AjZyKwVj3VnYU4GTonjfVEnJmvvWaxLac'
 //   }
 // }
-];
+// ];
 
 const endpoints = {
   'RPC': process.env.RPC_URL,
@@ -91,10 +91,12 @@ const endpoints = {
 async function getPubkeys () {
   let pubkeys = {}
   const keys = Object.keys(endpoints);
+  console.log(`Using Program: ${program_id}\n`);
 
   // Loop through endpoints and run getProgramAccounts
   const fetchAccounts = keys.map(async (key) => {
     let endpoint = endpoints[key];
+    let host_name = new URL(endpoint).hostname;
     pubkeys[key] = [];
 
     // Set up web3 client
@@ -116,7 +118,7 @@ async function getPubkeys () {
 
       // Log the results
       let elapsed_time = new Date() - start_time;
-      console.log('Checking:',endpoint,"\n",new Date().toISOString(), accounts.length, 'accounts in', elapsed_time, "milliseconds\n");
+      console.log('Checking:',host_name,"\n",new Date().toISOString(), accounts.length, 'accounts in', elapsed_time, "milliseconds\n");
     } catch (e) {
       console.log('\n', e, '\n');
     }
@@ -142,10 +144,10 @@ function diffArray(arr1, arr2) {
 }
 
 getPubkeys()
-  .then((pubkeys) => {
-    console.log(`Pubkeys in RPC but not Comparison:\n ${diffArray(pubkeys['RPC'], pubkeys['Comparison'])}\n`);
-    console.log(`Pubkeys in Comparison but not RPC:\n ${diffArray(pubkeys['Comparison'], pubkeys['RPC'])}\n`);    
-  })
+  // .then((pubkeys) => {
+  //   console.log(`Pubkeys in RPC but not Comparison:\n ${diffArray(pubkeys['RPC'], pubkeys['Comparison'])}\n`);
+  //   console.log(`Pubkeys in Comparison but not RPC:\n ${diffArray(pubkeys['Comparison'], pubkeys['RPC'])}\n`);    
+  // })
   .catch(error => {
     console.error('Error:', error);
   });
