@@ -37,5 +37,6 @@ try {
   nfts = e.message;
   console.log('\n', e, '\n');
 }
-console.log(`NFTS: ${JSON.stringify(nfts)}`);
+console.log(`Total cNFTs: ${nfts['total']}`);
+// console.log(`NFTS: ${JSON.stringify(nfts)}`);
 console.log('');
