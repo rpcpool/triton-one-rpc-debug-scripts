@@ -1,9 +1,9 @@
 // Get compressed assets for the given owner.
 //
-// Provide RPC_URL in your .env file to check your connection.
+// Provide RPC_URL & RPC_URL_COMPAREin your .env file to check your connection.
 //
 // Example Use:
-// node get_assets_by_owner.mjs <owner-account>
+// node get_assets_by_owner_compare.mjs <owner-account>
 
 import * as web3 from '@solana/web3.js';
 import dotenv from 'dotenv';
@@ -32,7 +32,6 @@ async function getAssets () {
   const keys = Object.keys(endpoints);
 
   const fetchAssets = keys.map(async (key) => {
-    const connection = new web3.Connection(endpoints[key], 'confirmed');
     const umi = createUmi(endpoints[key]).use(mplBubblegum());
     const umiPublicKey = new web3.PublicKey(account);
     nfts[key] = await umi.rpc.getAssetsByOwner({owner: umiPublicKey});
@@ -44,15 +43,6 @@ async function getAssets () {
 
   return nfts;  
 }
-// Set up web3 client
-// const connection = new web3.Connection(process.env.RPC_URL, 'confirmed');
-// Setup the DAS API connection
-// const umi = createUmi(process.env.RPC_URL).use(mplBubblegum());
-
-
-
-
-
 
 console.log('');
 console.log('Checking:',process.env.RPC_URL);

@@ -21,8 +21,6 @@ if (!process.argv[2]) {
 // Read the account from command line params
 const account = process.argv[2];
 
-// Set up web3 client
-const connection = new web3.Connection(process.env.RPC_URL, 'confirmed');
 // Setup the DAS API connection
 const umi = createUmi(process.env.RPC_URL).use(mplBubblegum());
 
