@@ -3,7 +3,7 @@
 // Provide RPC_URL in your .env file to check your connection.
 //
 // Example Use:
-// node get_asset_by_owner.mjs <owner-account>
+// node get_assets_by_owner.mjs <owner-account>
 
 import * as web3 from '@solana/web3.js';
 import dotenv from 'dotenv';
