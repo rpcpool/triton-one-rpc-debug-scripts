@@ -35,7 +35,7 @@ async function getAssets () {
     const umi = createUmi(endpoints[key]).use(mplBubblegum());
     const umiPublicKey = new web3.PublicKey(account);
     nfts[key] = await umi.rpc.getAssetsByOwner({owner: umiPublicKey});
-    console.log(`${nfts[key]['total']} cNFTs from ${endpoints[key]}`);
+    console.log(`${nfts[key]['total']} assets from ${endpoints[key]}`);
   });
 
   // Wait for all the promises to resolve
@@ -44,14 +44,42 @@ async function getAssets () {
   return nfts;  
 }
 
+// show the contents of an array that are not in another array
+function diffArray(arr1, arr2) {
+  let newArr = [];
+  // Same, same; but different.
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr2.indexOf(arr1[i]) === -1) {
+      newArr.push(arr1[i]);
+    }
+  }
+  return newArr;
+}
+
 console.log('');
-console.log('Checking:',process.env.RPC_URL);
 console.log(`Getting assets for ${account}\n`);
 getAssets()
+  .then((nfts) => {
+    let keys = Object.keys(nfts);
+    // Get the difference between the two sets of assets
+    let diff_1 = diffArray(
+      nfts[keys[0]]['items'].map((item) => item.id), 
+      nfts[keys[1]]['items'].map((item) => item.id)
+    );
+    console.log(`\n${diff_1.length} assets in ${endpoints[keys[0]]} that are not in ${endpoints[keys[1]]}:`);
+    console.log(JSON.stringify(diff_1));
+
+    // Get the difference the other way
+    let diff_2 = diffArray(
+      nfts[keys[1]]['items'].map((item) => item.id), 
+      nfts[keys[0]]['items'].map((item) => item.id)
+    );
+    console.log(`\n${diff_2.length} assets in ${endpoints[keys[1]]} that are not in ${endpoints[keys[0]]}:`);
+    console.log(JSON.stringify(diff_2));
+  })
   .then(() => {
     console.log("\nEND\n");
   })
   .catch((e) => {
     console.log('\n', e, '\n');
   });
-
