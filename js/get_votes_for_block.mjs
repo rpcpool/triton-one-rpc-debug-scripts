@@ -12,7 +12,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // Read the slot number from the command line
-const slot = process.argv.slice(2);
+const slot = process.argv[2];
 if(!slot) {throw new Error('Please provide a slot number')};
 const slot_number = parseInt(slot);
 
