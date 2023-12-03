@@ -21,20 +21,21 @@ const connection = new web3.Connection(
   process.env.RPC_URL, 'confirmed'
 );
 
-// Fetch the block for that slot
-const block = await connection.getBlock(
-  slot_number, 
-  { 
-    commitment: 'confirmed', 
-    maxSupportedTransactionVersion: 1,
-    format: 'jsonParsed'
-  }
-);
-console.log(block.transactions.length);
-// console.log(JSON.stringify(block.transactions));
+const block = await connection._rpcRequest(
+  'getBlock',
+  connection._buildArgsAtLeastConfirmed(
+    [slot_number],
+    'confirmed',
+    'jsonParsed',
+    {
+      maxSupportedTransactionVersion: 1
+    }
+  )
+)
 
-// print each transaction to the console
-block.transactions.forEach((tx) => {
+console.log(block.result.transactions.length);
+
+block.result.transactions.forEach((tx) => {
   // create a new PublicKey object for the Vote program ID
   const vp = new web3.PublicKey('Vote111111111111111111111111111111111111111');
 
@@ -42,10 +43,10 @@ block.transactions.forEach((tx) => {
   if(!tx.transaction.message.accountKeys) return;
 
   // Loop to the next tx unless accountKeys includes 'Vote111111111111111111111111111111111111111'
-  if(!tx.transaction.message.accountKeys.find((key) => key.equals(vp))) return;
+  if(!tx.transaction.message.accountKeys.find((key) => key.pubkey == "Vote111111111111111111111111111111111111111")) return;
 
   console.log(`${JSON.stringify(tx)}\n`);
-  console.log(`${JSON.stringify(tx.transaction.message.instructions[0].data)}\n`);
+  console.log(`${JSON.stringify(tx.transaction.message.instructions[0].parsed)}\n`);
 
   // TODO: Parse the instruction data
 
