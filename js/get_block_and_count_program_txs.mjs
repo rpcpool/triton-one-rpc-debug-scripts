@@ -6,14 +6,14 @@
 // Provide RPC_URL in your .env file to check your connection.
 //
 // Example Use:
-// node get_block_and_count_program_txs.mjs
+// node get_block_and_count_program_txs.mjs <program-pubkey>
 
 import * as web3 from '@solana/web3.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
-// Vote111111111111111111111111111111111111111
 const program_id = process.argv[2];
+if(!program_id) {throw new Error('Please provide a program ID')}
 
 // Set up web3 client
 const connection = new web3.Connection(
