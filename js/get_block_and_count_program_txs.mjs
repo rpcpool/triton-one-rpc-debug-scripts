@@ -1,7 +1,6 @@
-// This script will run a getProgramAccounts query on the Serum V3 program ID. 
-// Output to the console will show the number of records returned and the 
-// elapsed time in milliseconds. On error, the script will exit and dump 
-// error details to the console.
+// This script will run a getBlock query on the given program ID. 
+// Output to the console will show the number of TXs for the program ID in the 
+// block.
 //
 // Provide RPC_URL in your .env file to check your connection.
 //
