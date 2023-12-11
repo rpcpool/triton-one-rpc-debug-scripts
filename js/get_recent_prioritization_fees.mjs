@@ -21,9 +21,11 @@ const connection = new web3.Connection(
   process.env.RPC_URL, 'confirmed'
 );
 
-console.log(account);
+console.log(`${account.toBase58()}`);
 // Fetch the transaction
 const fees = await connection.getRecentPrioritizationFees({lockedWritableAccounts: [account]});
 
-// Print the transaction to the console
-console.log(JSON.stringify(fees));
+// Loop through fees and print out the details
+for (const fee of fees) {
+  console.log(fee);
+}
