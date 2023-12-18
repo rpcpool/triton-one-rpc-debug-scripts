@@ -18,9 +18,9 @@ const connection = new web3.Connection(process.env.RPC_URL, 'confirmed');
 // Setup getProgramAccounts call
 //
 // Marinade
-const program_id = 'Stake11111111111111111111111111111111111111';
-const bytes = '4bZ6o3eUUNXhKuqjdCnCoPAoLgWiuLYixKaxoa8PpiKk';
-const offset = 12;
+const program_id = '1azyuavdMyvsivtNxPoz6SucD18eDHeXzFCUPq5XU7w';
+const bytes = 'W7aXfo2BZX7';
+const offset = 0;
 const gpa_filters = [
   // { dataSize: data_size },
   { memcmp: { offset: offset, bytes: bytes } }
