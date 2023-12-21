@@ -3,13 +3,13 @@
 // Provide RPC_URL in your .env file to check your connection.
 //
 // Example Use:
-// node get_token_account_balance.mjs
+// node get_token_account_balance.mjs ACCOUNT_PUBKEY
 
 import * as web3 from '@solana/web3.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const account = 'DukyuqzWpy1BQdG5pLarZzbW2Bxf4wQDNKayPenVBoXd';
+const account = process.argv[2];
 
 // Set up web3 client
 const connection = new web3.Connection(process.env.RPC_URL, 'confirmed');
