@@ -2,6 +2,13 @@ import dotenv from 'dotenv';
 dotenv.config();
 const url = process.env.RPC_URL;
 
+  const groupingValue = process.argv[2];
+
+  if (!groupingValue) {
+    console.error('Usage: node script.js <groupingValue>');
+    process.exit(1);
+  }
+
 const searchAssets = async () => {
   const response = await fetch(url, {
     method: 'POST',
@@ -13,7 +20,7 @@ const searchAssets = async () => {
       id: 'my-id',
       method: 'searchAssets',
       params: {
-        grouping: ["collection", "DEEZyno8D9RCCghEWkTNarZrCW7HvvWE9z64tiqvQKpH"],
+        grouping: ["collection", groupingValue],
         page: 1, // Starts at 1
         limit: 1000
       },

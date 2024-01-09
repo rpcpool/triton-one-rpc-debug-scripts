@@ -1,9 +1,10 @@
 import dotenv from 'dotenv';
 dotenv.config();
+
 const url1 = process.env.RPC_URL;
 const url2 = process.env.RPC_URL_COMPARE;
 
-const searchAssets = async (url) => {
+const searchAssets = async (url, groupingValue) => {
   try {
     const response = await fetch(url, {
       method: 'POST',
@@ -15,7 +16,7 @@ const searchAssets = async (url) => {
         id: 'my-id',
         method: 'searchAssets',
         params: {
-          grouping: ["collection", "DEEZyno8D9RCCghEWkTNarZrCW7HvvWE9z64tiqvQKpH"],
+          grouping: ["collection", groupingValue], // Use the parsed CLI argument here
           page: 1,
           limit: 1000
         },
@@ -41,8 +42,16 @@ const compareResults = (result1, result2) => {
 };
 
 const main = async () => {
-  const result1 = await searchAssets(url1);
-  const result2 = await searchAssets(url2);
+  // Parse the CLI argument for the grouping value
+  const groupingValue = process.argv[2];
+
+  if (!groupingValue) {
+    console.error('Usage: node script.js <groupingValue>');
+    process.exit(1);
+  }
+
+  const result1 = await searchAssets(url1, groupingValue);
+  const result2 = await searchAssets(url2, groupingValue);
 
   compareResults(result1, result2);
 };
