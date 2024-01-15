@@ -64,9 +64,15 @@ try {
     // console.log('Total accounts:', accounts.length);
     // console.log('First account owner:', accounts[0].owner.toBase58(), ' bytes ', accounts[0].data.length);
     // console.log('Last account owner:', accounts[accounts.length - 1].owner.toBase58(), ' bytes ', accounts[0].data.length);
-    
+    // Calculate total bytes in all accounts
+    let total_bytes = 0;
+    accounts.forEach((account) => {
+      total_bytes += account.data.length;
+    });
+    // console.log('Total bytes:', total_bytes);
+
     let elapsed_time = new Date() - start_time;
-    console.log(new Date().toISOString(), accounts.length, 'accounts in', elapsed_time, "milliseconds\n");
+    console.log(new Date().toISOString(), accounts.length, 'accounts in', elapsed_time, "milliseconds", ' Total bytes:', total_bytes, "\n");
   }
 } catch (e) {
   console.log('\n', e, '\n');
