@@ -69,10 +69,9 @@ try {
     accounts.forEach((account) => {
       total_bytes += account.data.length;
     });
-    // console.log('Total bytes:', total_bytes);
 
     let elapsed_time = new Date() - start_time;
-    console.log(new Date().toISOString(), accounts.length, 'accounts in', elapsed_time, "milliseconds", ' Total bytes:', total_bytes, "\n");
+    console.log(new Date().toISOString(), accounts.length, 'accounts in', elapsed_time, "milliseconds", ' Total bytes: ', total_bytes, "\n");
   }
 } catch (e) {
   console.log('\n', e, '\n');
