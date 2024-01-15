@@ -1,3 +1,5 @@
+// Copy get_multiple_accounts_batch.example.yml to get_multiple_accounts_batch.yml
+//
 // Put your list of account pubkeys into get_multiple_accounts_batch.yml with the following format:
 // - pubkey-1
 // - pubkey-2
