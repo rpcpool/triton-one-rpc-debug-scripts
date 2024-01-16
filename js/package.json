@@ -5,6 +5,7 @@
     "@metaplex-foundation/umi-bundle-defaults": "^0.8.10",
     "@solana/web3.js": "^1.87.6",
     "dotenv": "^16.0.1",
-    "js-yaml": "^4.1.0"
+    "js-yaml": "^4.1.0",
+    "web3": "^4.3.0"
   }
 }
