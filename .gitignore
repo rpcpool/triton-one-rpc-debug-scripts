@@ -6,6 +6,8 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+js/get_multiple_accounts_batch.yml
+
 # Mac .DS_Store
 .DS_Store
 
