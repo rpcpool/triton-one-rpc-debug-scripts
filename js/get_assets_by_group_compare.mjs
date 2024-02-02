@@ -18,7 +18,7 @@ program
   .option("-l, --limit <number>", "number of results per page", "1000")
   .option("-d, --diff", "print the difference", true)
   .option(
-    "-e, --exclude <fields>",
+    "-w, --exclude <fields>",
     "Comma separated list of fields to exclude from the compare",
     "content"
   );
@@ -112,7 +112,7 @@ const main = async () => {
     });
 
     fetchMore =
-      results.every((result) => result.length === PAGE_SIZE) && page < endPage;
+      results.every((result) => result.length === limit) && page < endPage;
     page += 1;
   }
 
