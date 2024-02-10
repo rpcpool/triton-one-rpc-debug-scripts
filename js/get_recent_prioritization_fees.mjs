@@ -25,8 +25,11 @@ console.log(`${account.toBase58()}`);
 // Fetch the transaction
 const fees = await connection.getRecentPrioritizationFees({lockedWritableAccounts: [account]});
 
+// sort the fees by slot
+// fees.sort((a, b) => a.slot - b.slot);
+
 // Loop through fees and print out the details
-for (const fee of fees) {
+for (const fee of fees.sort((a, b) => a.slot - b.slot)) {
   console.log(fee);
 }
 
