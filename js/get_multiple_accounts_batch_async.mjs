@@ -60,13 +60,13 @@ try {
     const batch = multiple_accounts_keys.slice(i * BATCH_SIZE, (i + 1) * BATCH_SIZE);
 
     // Create a promise for each batch and add it to the array
-    batchPromises.push((async () => {
+    batchPromises.push((async () => {  
       let start_time = new Date();
       const accounts = await connection.getMultipleAccountsInfo(batch);
       let elapsed_time = new Date() - start_time;
       return { accounts, elapsed_time }; // Return relevant data
     })());
-  }
+  } 
 
   // Use Promise.all to execute all batch requests concurrently
   Promise.all(batchPromises)
