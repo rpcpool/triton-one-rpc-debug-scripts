@@ -46,16 +46,3 @@ while(true) {
   await sleep(2000);
 }
 
-// Get the latest finalized slot
-// const slot = await connection.getSlot('finalized');
-// console.log(slot);
-
-// // Fetch the block for that slot
-// const block = await connection.getBlock(
-//   slot, 
-//   { 
-//     commitment: 'finalized', 
-//     maxSupportedTransactionVersion: 1 
-//   }
-// );
-// console.log(block.transactions.length);
