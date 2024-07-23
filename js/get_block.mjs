@@ -1,7 +1,5 @@
-// This script will run a getProgramAccounts query on the Serum V3 program ID. 
-// Output to the console will show the number of records returned and the 
-// elapsed time in milliseconds. On error, the script will exit and dump 
-// error details to the console.
+// This script will fetch the most recent finalized block and 
+// return the slot number, elapsed time, and transaction count.
 //
 // Provide RPC_URL in your .env file to check your connection.
 //
@@ -19,8 +17,8 @@ const connection = new web3.Connection(
 
 // Get the latest finalized slot
 const slot = await connection.getSlot('finalized');
-console.log(slot);
 
+let startTimestamp = new Date().getTime();
 // Fetch the block for that slot
 const block = await connection.getBlock(
   slot, 
@@ -29,4 +27,6 @@ const block = await connection.getBlock(
     maxSupportedTransactionVersion: 1 
   }
 );
-console.log(block.transactions.length);
+let endTimestamp = new Date().getTime();
+
+console.log(`${new Date().toISOString()}: Slot: ${slot}, tx: ${block.transactions.length}, ms: ${endTimestamp - startTimestamp}`);
