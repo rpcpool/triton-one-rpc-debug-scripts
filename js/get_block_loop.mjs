@@ -30,18 +30,25 @@ while(true) {
     let slot = await connection.getSlot('finalized');
     // slot = slot - epochOffset;
     // console.log(slot);
-    let startTimestamp = new Date().getTime();
-    const block = await connection.getBlock(
-      slot - epochOffset, 
-      { 
-        commitment: 'finalized', 
-        maxSupportedTransactionVersion: 1 
-      }
-    );
-    let endTimestamp = new Date().getTime();
-    console.log(`${new Date().toISOString()}: Slot: ${slot} ms: ${endTimestamp - startTimestamp}`);
+
+    // Get the block five times in a row and print the time it takes to get the block
+    
+    for (let i = 0; i < 5; i++) {
+      let startTimestamp = new Date().getTime();
+      const block = await connection.getBlock(
+        slot - epochOffset, 
+        { 
+          commitment: 'finalized', 
+          maxSupportedTransactionVersion: 1 
+        }
+      );
+      let endTimestamp = new Date().getTime();
+      console.log(`${new Date().toISOString()}: Slot: ${slot}, tx: ${block.transactions.length}, ms: ${endTimestamp - startTimestamp}`);
+    }
+    console.log(''); // Add a newline between each block fetch
   } catch (error) {
     console.error(`${new Date().toISOString()}: ${error}`);
+    console.log('');
   }
   await sleep(2000);
 }
