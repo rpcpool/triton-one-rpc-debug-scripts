@@ -38,6 +38,7 @@ const getAsset = async (url, id) => {
 
 const printAsset = async (url, id) => {
   const asset = await getAsset(url, id);
+  console.log(`Asset: ${JSON.stringify(asset)}`);
   if (asset) {
     console.log(JSON.stringify(asset, null, 2));
   } else {
