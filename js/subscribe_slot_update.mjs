@@ -13,7 +13,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // Set up web3 client
-const connection = new web3.Connection(process.env.RPC_URL, 'confirmed');
+const connection = new web3.Connection(process.env.RPC_URL, 'processed');
+console.log('Connected to cluster:', process.env.RPC_URL);
 
 try {
   let start_time = new Date();

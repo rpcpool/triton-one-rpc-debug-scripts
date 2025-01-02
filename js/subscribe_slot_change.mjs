@@ -13,7 +13,13 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // Set up web3 client
-const connection = new web3.Connection(process.env.RPC_URL, 'finalized');
+const connection = new web3.Connection(
+  process.env.RPC_URL,
+  {
+    commitment: 'processed',
+    wsEndpoint: process.env.WS_URL,
+  }
+);
 
 try {
   let start_time = new Date();
