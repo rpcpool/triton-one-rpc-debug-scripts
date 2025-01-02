@@ -16,7 +16,7 @@ dotenv.config();
 // Set up web3 client
 const PUBSUB_COMMITMENT_LEVEL = 'finalized';
 const RPC_COMMITMENT_LEVEL = 'confirmed';
-const pubsub_conn = new web3.Connection(process.env.RPC_URL, PUBSUB_COMMITMENT_LEVEL);
+const pubsub_conn = new web3.Connection(process.env.WSS_URL, PUBSUB_COMMITMENT_LEVEL);
 const rpc_conn = new web3.Connection(process.env.RPC_URL, RPC_COMMITMENT_LEVEL);
 
 async function fetchBlock(slot) {
