@@ -26,9 +26,12 @@ async function main() {
           console.log(`${new Date().toUTCString()} Got Block ${slot} in ${Date.now() - startTime}ms`);
           break;
         }
-      } catch (e: any) { }
+      } catch (e: any) {
+        console.error(`${new Date().toUTCString()} Error fetching block ${slot}: ${e.message}`);
+      }
     }
-
+    // Sleep for 2.5 seconds to avoid hitting rate limits in this demo script
+    await new Promise((resolve) => setTimeout(resolve, 2000))
   }
 
 }
