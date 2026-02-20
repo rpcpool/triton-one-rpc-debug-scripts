@@ -1,0 +1,10 @@
+{
+  "name": "grpc-debug-scripts",
+  "private": true,
+  "dependencies": {
+    "@triton-one/yellowstone-grpc": "^1.0.0",
+    "@grpc/grpc-js": "^1.0.0",
+    "@grpc/proto-loader": "^0.7.0",
+    "bs58": "^6.0.0"
+  }
+}
